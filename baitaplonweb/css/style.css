@@ -674,6 +674,7 @@ a{
 }
 .home-product__img{
     max-width: 100%;
+    height: 250px;
     transition: 0.5s;
 }
 .home-product__img:hover{
@@ -765,6 +766,7 @@ a{
     }
     .product__content-right-infor-buy{
         height: 100%;
+        /* width: 30%; */
         width: 30%;
         background-color: var(--whitecl);
         border-radius: .5rem;
@@ -773,7 +775,9 @@ a{
     }
     .product__content-right-infor-buy:nth-child(1){
         border: .2rem solid #000;
-        width: 40%;
+        /* width: 40%; */
+        width: 150px;
+        height: 50px;
     }
     .product__content-right-infor-buy:nth-child(2){
         background-color: var(--pricl);
@@ -1002,6 +1006,7 @@ a{
     }
     .product__container-bottom-sp-img{
         max-width: 100%;
+        height: 200px;
         transition: 0.5s;
     }
 /* ---------Gio hang */

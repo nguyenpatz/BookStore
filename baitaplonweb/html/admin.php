@@ -1,3 +1,21 @@
+<?php 
+// session_start();
+
+include 'connectDB.php';
+include 'header_admin.php';
+
+
+    if(isset($_SESSION['taikhoan'])) { // nếu session này có sẵn
+
+} else {
+            // nếu kiểm tra taikhoan và matkhau không giống $username, $password
+            echo "<script>alert('Sai tài khoản hoặc mật khẩu');</script>";
+
+            echo "<script>location.href='login_admin.php'</script>";
+        }
+
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>

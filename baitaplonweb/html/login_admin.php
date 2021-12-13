@@ -1,33 +1,47 @@
 <?php 
+session_start();
+
 include 'connectDB.php';
+
+// tạo 2 biến lưu để lưu kết quả taikhoan và matkhau từ table admin
+$username = ''; // biến này sẽ so sánh với $_POST['taikhoan']
+
+$password = ''; // biến này sẽ so sánh với $_POST['matkhau']
+
+// lấy data từ table admin
+$sql = "SELECT * FROM admin";
+
+$stmt = $conn->prepare($sql);
+
+$stmt->execute();
+
+$result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+foreach ($result as  $value) {
+
+    $username = $value['taikhoan'];
+
+    $password = $value['matkhau'];
+}
+
+// khi mà nhấn nút đăng nhập ta kiểm tra toàn bộ dữ liệu từ form và so sánh có đúng với $username ,$password 
+if(isset($_POST['submit'])) {
+
+        if($_POST['taikhoan'] == $username && $_POST['matkhau'] == $password ) {
+            // nếu taikhoan và matkhau giống $username, $password
+            $_SESSION['taikhoan'] = $username; // gán giá trị vào session
+
+            $_SESSION['matkhau'] = $password; //gán giá trị vào session
+
+            echo "<script>location.href='admin.php'</script>";
+        } else {
+            // nếu kiểm tra taikhoan và matkhau không giống $username, $password
+            echo "<script>alert('Sai tài khoản hoặc mật khẩu');</script>";
+
+            echo "<script>location.href='login_admin.php'</script>";
+        }
+}
+
 ?>
-
-<?php 
-    $sql = "SELECT * FROM user";
-    $stmt = $conn->prepare($sql);
-    $stmt->execute();
-
-    $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
-    
-
-    if(isset($_POST['submit'])) {
-        $taikhoan = $_POST['taikhoan'];
-        $matkhau = $_POST['matkhau'];
-
-        foreach ($result as $value) {
-
-
-            if($taikhoan == $value['taikhoan'] && $matkhau == $value['matkhau']) {
-                header("location: http://localhost/baitaplonweb/html/admin.php");
-            }
-        }    
-    }
-    
-?>
-
-
-
-
 <!DOCTYPE html>
 <html lang="en">
 <head>

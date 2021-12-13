@@ -1,3 +1,8 @@
+<?php 
+
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -21,7 +26,7 @@
 
         <div class="menu">
             <li class="menu__item">
-                <a href="#" class="menu__link">Sản phẩm</a>
+                <a href="sanpham.php" class="menu__link">Sản phẩm</a>
                     <ul class="sub-menu">
 
                         <!-- Mục sản phẩm Sách thiếu nhi-->

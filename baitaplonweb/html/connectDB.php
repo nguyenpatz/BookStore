@@ -3,7 +3,7 @@
 $servername = 'localhost';
 $username = 'root';
 $password = '';
-$dbname = 'baitaplonweb'; 
+$dbname = 'bookstore'; 
 
 try{
     $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);

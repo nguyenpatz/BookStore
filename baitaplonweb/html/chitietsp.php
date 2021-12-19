@@ -89,7 +89,7 @@
                                     ?></span>
                                 </li>
                                 <!-- form gio hang -->
-                                <form action="giohang.php" method="POST">
+                                <form action="giohang2.php" method="POST">
                                     <li class="product__content-right-infor-item">
                                         <label>Số lượng</label>
                                         <input type="number" name="soluong" min="0" value="1" class="product__content-right-infor-sum">
@@ -108,6 +108,7 @@
                                         Mua ngay
                                         </button> -->
                                     </li>
+                                    <input type="hidden" name="sach_id" value="<?php echo $value['sach_id']?>">
                                     <input type="hidden" name="hinhanh" value="<?php echo './uploads/'.$value['anh'];?>">
                                     <input type="hidden" name="tensp" value="<?php echo $value['ten']?>">
                                     <input type="hidden" name="tacgia" value="<?php echo $value['tacgia']?>">

@@ -161,9 +161,26 @@
                             <div class="grid__row">
                                 <?php 
 
-                                $sql = "SELECT * FROM sach";
+                                // $sql = "SELECT * FROM sach";
+                                $search_sql = '';
 
-                                $stmt = $conn->prepare($sql);
+                                $search_name = '';
+
+                                if(isset($_GET['timkiemtensach'])) {
+
+                                    $search_name = $_GET['timkiemtensach'];
+                                }
+
+                                if(empty($search_name)) {
+
+                                    $search_sql = "SELECT * FROM sach";
+
+                                } else {
+
+                                     $search_sql =  "SELECT * FROM sach WHERE ten LIKE '%$search_name%'";
+                                }
+
+                                $stmt = $conn->prepare($search_sql);
 
                                 $stmt->execute();
 

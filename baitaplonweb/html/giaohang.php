@@ -1,6 +1,10 @@
 <?php 
 
+    include 'connectDB.php';
+
     include 'header_trangchu.php';
+
+    include 'thuvien.php';
 
     if(isset($_SESSION['taikhoan'])) {
 
@@ -47,7 +51,62 @@
     <div class="container">
          <div class="delivery-content row">
              <div class="delivery-content__left">
-                <p style="margin-bottom: 10px;">Vui lòng chọn địa chỉ giao hàng</p>
+
+                <p>Thông tin khách hàng</p>
+
+                <table>
+
+                    <tr>
+
+                        <th>Tên khách hàng</th>
+
+                        <th>Địa chỉ</th>
+
+                        <th>Số điện thoại</th>
+
+                        
+                        <th>Trạng thái vận đơn</th>
+
+                    </tr>
+
+                    <?php 
+
+                        $user_id = $_SESSION['user_id'];
+
+                        $select_hoa_don = "SELECT ten, diachi, sodienthoai, trangthaivandon FROM hoadon WHERE user_id = '$user_id' ORDER BY hoadon_id DESC LIMIT 1";
+
+                        $stmt = $conn->prepare($select_hoa_don);
+
+                        $stmt->execute();
+
+                        $ketqua_hoa_don = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+                        foreach ($ketqua_hoa_don as $info_hoa_don) {
+                            // code...
+
+                    ?>
+
+                    <tr>
+
+                        <td><?php echo $info_hoa_don['ten']?></td>
+
+                        <td><?php echo $info_hoa_don['diachi']?></td>
+
+                        <td><?php echo $info_hoa_don['sodienthoai']?></td>
+
+                        <td><?php  if($info_hoa_don['trangthaivandon'] == 1) {
+
+                            echo "Đang vận chuyển tới".$info_hoa_don['diachi'];
+                        } else {
+                            echo "Chưa vận chuyển";
+                        }?></td>
+
+                    </tr>
+
+                    <?php }?>
+
+                </table>
+                <!-- <p style="margin-bottom: 10px;">Vui lòng chọn địa chỉ giao hàng</p>
                 <div class="delivery-content__left-login row">
                     <i class="fas fa-sign-in-alt"></i>
                     <p>Đăng nhập (Nếu bạn đã có tài khoản)</p>
@@ -83,12 +142,13 @@
                     <input type="text">
                 </div>
               <div class="delivery-content__left-button row">
-                <a href=""><span>«</span><p>Quay lại giỏ hàng</p></a>
-                <button><p style="font-weight: bold;">THANH TOÁN VÀ GIAO HÀNG</p></button>
-              </div>
+                <a href="giohang2.php"><span>«</span><p>Quay lại giỏ hàng</p></a>
+                <button><p style="font-weight: bold;"><a href="trangthaigiaohang.php">THANH TOÁN VÀ GIAO HÀNG</a></p></button>
+              </div> -->
              </div>
              <div class="delivery-content__right">
-                <table>
+                <?php showTongTien();?>
+                <!-- <table>
                     <tr>
                         <th>Tên sản phẩm</th>
                         <th>Giảm giá</th>
@@ -118,8 +178,8 @@
                    <tr>
                        <td style="font-weight: bold;" colspan="3">Tổng tiền hàng</td>
                        <td style="font-weight: bold;"><p>61.000 <sup>VND</sup></p></td>
-                   </tr>
-                </table>
+                   </tr> -->
+                <!-- </table> -->
            </div>
          </div>
     </div>

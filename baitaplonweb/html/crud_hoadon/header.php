@@ -20,27 +20,26 @@ if(isset($_SESSION['taikhoan'])) {
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>Document</title>
-	<link rel="stylesheet" type="text/css" href="../crud_sach/style.css">
+	<link rel="stylesheet" href="../crud_sach/style.css">
 </head>
 <body>
 	<!-- Bắt đầu header -->
 	<header>
-
 		<!-- tiêu đề của trang -->
-		<div style="width: 100%; text-align: center; font-style: italic;">Danh sách user</div>
+		<div style="width: 100%; text-align: center; font-style: italic;">Danh sách hóa đơn</div>
 
 		<!-- Thanh tìm kiếm -->
 		<nav class="nav__menu">
 
 			<ul class="nav__menu__list">
 
-				<li><a href="them.php" target="_self"><button class="nav__menu__list-btn">Thêm user</button></a></li>
+				<!-- <li><a href="them.php" target="_self" > <button class="nav__menu__list-btn">Thêm hóa đơn</button></a></li> -->
 
 				<li>
 
-					<form action="danhsachuser.php" method="GET">
+					<form action="danhsachhoadon.php" method="GET">
 
-						<input class="nav__menu__timkiem" type="text" name="timkiemuser" placeholder="Nhập tên tài khoản">
+						<input class="nav__menu__timkiem" type="text" name="timkiemhoadon" placeholder="Nhập tên khách hàng">
 
 					</form>
 

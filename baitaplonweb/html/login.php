@@ -4,6 +4,8 @@ session_start();
 
 include 'connectDB.php';
 
+$user_id = '';
+
 $username = '';
 
 $password = '';
@@ -18,6 +20,8 @@ $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
 foreach ($result as  $value) {
 
+    $user_id = $value['id'];
+
     $username = $value['taikhoan'];
 
     $password = $value['matkhau'];
@@ -29,6 +33,8 @@ if(isset($_POST['dangnhap'])) {
         if($_POST['taikhoan'] == $username && $_POST['matkhau'] == $password ) {
             // nếu taikhoan và matkhau giống $username, $password
             $_SESSION['taikhoan'] = $username; // gán giá trị vào session
+
+            $_SESSION['user_id'] = $user_id; // gán giá trị vào session
 
             $_SESSION['matkhau'] = $password; //gán giá trị vào session
 

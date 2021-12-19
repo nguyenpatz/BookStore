@@ -2,6 +2,8 @@
 
     include 'header_trangchu.php';
 
+    include 'thuvien.php';
+
     if(isset($_SESSION['taikhoan'])) {
 
         // echo "<script>alert('".$_SESSION['taikhoan']."')</script>";
@@ -34,6 +36,8 @@
     // lấy dữ liệu từ form chitietsp.php
 
     if(isset($_POST['addcart']) && ($_POST['addcart'])) {
+
+        // $id = $_POST['sach_id'];
 
         $hinhanh = $_POST['hinhanh'];
 
@@ -69,61 +73,14 @@
         if($fl ==0) {
 
         // thêm mới sản phẩm
-        $sp = [$hinhanh, $tensp, $tacgia, $soluong, $giatien];
+        // $sp = [$hinhanh, $tensp, $tacgia, $soluong, $giatien, $id];
 
-        // $sp = [$hinhanh, $tensp, $tacgia, $soluong, $giatien];
+        $sp = [$hinhanh, $tensp, $tacgia, $soluong, $giatien];
 
         $_SESSION['giohang'][] = $sp;
 
         }
-    }
-
-    function showGioHang() {
-        if(isset($_SESSION['giohang']) && is_array($_SESSION['giohang'])) {
-            $tong = 0;
-            for ($i = 0; $i < sizeof($_SESSION['giohang']); $i++) {
-                $tt = $_SESSION['giohang'][$i][4] * $_SESSION['giohang'][$i][3];
-                $tong += $tt;
-                // code...
-                echo '<tr>
-                        <td><img src="'.$_SESSION['giohang'][$i][0].'" class="cart__content-left-table-img" alt=""></td>
-                        <td><p>'.$_SESSION['giohang'][$i][1].'</p></td>
-                        <td><p>'.$_SESSION['giohang'][$i][2].'</p></td>
-                        <td><p>'.$_SESSION['giohang'][$i][3].'</p></td>
-                        <td><p>'.$tt.' <sup>VND</sup></p></td>
-                        <td><span><a href="giohang.php?delid='.$i.'" >X</a></span></td>
-                    </tr>';
-            }
-        }
-    }
-
-    function showTongTien() {
-        if(isset($_SESSION['giohang']) && is_array($_SESSION['giohang'])) {
-            $tong = 0;
-            for ($i = 0; $i < sizeof($_SESSION['giohang']); $i++) {
-                $tt = $_SESSION['giohang'][$i][4] * $_SESSION['giohang'][$i][3];
-                $tong += $tt;
-                // code...
-                echo '<table class="cart__content-right-table">
-                     <tr>
-                         <th colspan="2">TỔNG TIỀN GIỎ HÀNG</th>
-                     </tr>
-                     <tr>
-                         <td>TỔNG SẢN PHẨM</td>
-                         <td>'.sizeof($_SESSION['giohang']).'</td>
-                     </tr>
-                     <tr>
-                         <td>TỔNG TIỀN HÀNG</td>
-                         <td><p>'.$tong.' <sup>VND</sup></p></td>
-                     </tr>
-                     <tr>
-                         <td>TẠM TÍNH</td>
-                         <td><p style="color: black; font-weight: bold;">'.$tong.' <sup>VND</sup></p></td>
-                     </tr>
-                 </table>';
-            }
-        }
-    }
+    }    
 
 ?>
 
@@ -172,43 +129,13 @@
                         <th>Xóa</th>
                     </tr>
                     <?php showGioHang();?>
-                    <!-- <tr>
-                        <td><img src="../images/sp1-small.jpeg" class="cart__content-left-table-img" alt=""></td>
-                        <td><p>Học sinh chân kinh tập 25</p></td>
-                        <td><p>R.B.O</p></td>
-                        <td><input type="number" value="1" min="1"></td>
-                        <td><p>28.000 <sup>VND</sup></p></td>
-                        <td><span>X</span></td>
-                    </tr> -->
-                    <!-- <tr>
-                        <td><img src="../images/sp1.jpg" class="cart__content-left-table-img" alt=""></td>
-                        <td><p>Học sinh chân kinh tập 24</p></td>
-                        <td><p>R.B.O</p></td>
-                        <td><input type="number" value="1" min="1"></td>
-                        <td><p>28.000 <sup>VND</sup></p></td>
-                        <td><span>X</span></td>
-                    </tr> -->
+    
                 </table>
+                
              </div>
              <div class="cart__content-right">
                 <?php showTongTien();?>
-                 <!-- <table class="cart__content-right-table">
-                     <tr>
-                         <th colspan="2">TỔNG TIỀN GIỎ HÀNG</th>
-                     </tr>
-                     <tr>
-                         <td>TỔNG SẢN PHẨM</td>
-                         <td>2</td>
-                     </tr>
-                     <tr>
-                         <td>TỔNG TIỀN HÀNG</td>
-                         <td><p>58.000 <sup>VND</sup></p></td>
-                     </tr>
-                     <tr>
-                         <td>TẠM TÍNH</td>
-                         <td><p style="color: black; font-weight: bold;">58.000 <sup>VND</sup></p></td>
-                     </tr>
-                 </table> -->
+                 
                  <div class="cart__content-right-text">
                      <p>Bạn sẽ được free ship khi đơn hàng của bạn mua trên 200.000 VND</p>
                      <p style="color: red; font-weight: bold;">Mua thêm <span style="font-size: 18px;" class="cart__content-right-text-buymore">142.000đ</span> để được FREE SHIP</p>
@@ -216,7 +143,12 @@
                  <div class="cart__content-right-button">
                     <button> <a href="giohang.php?delcart=1">Xoá đơn hàng</a></button>
                      <button><a href="sanpham.php" style="text-decoration: none">TIẾP TỤC MUA SẮM</a></button>
-                     <button> <a href="./thanhtoan.php">THANH TOÁN</a></button>
+                     <form action="thanhtoan.php" method="POST">
+                         <!-- <button type="submit" name="thanhtoan"><a href="./thanhtoan.php">THANH TOÁN</a></button> -->
+                        <!--  <button type="submit" name="thanhtoan">THANH TOÁN</button> -->
+                        <!-- <button type="submit" name="thanhtoan">Thanh toán</button> -->
+                         <input type="submit" value="Thanh toán" name="thanhtoan" style="text-decoration: none">
+                     </form>
                  </div>
                  <div class="cart__content-right-login">
                      <p>Hãy <a href="">Đăng nhập </a>tài khoản của bạn để tích xu</p>

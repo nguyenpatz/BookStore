@@ -17,12 +17,12 @@ include 'header.php';
 			<table class="table table-inverse table-bordered text-center">
 				<thead style="background-color: #000; color: #fff; font-weight: 500;">
 					<tr>
-						
-						<th>Tên sách</th>
-						<th>Tác giả</th>
-						<th>Ngày xuất bản</th>
+						<th>Tên sản phẩm</th>
+						<th>Số lượng</th>
 						<th>Giá tiền</th>
+						<th>Tổng tiền</th>
 						<th>Ảnh</th>
+						<th>Mã hóa đơn</th>
 						<th>Tùy chọn</th>
 					</tr>
 				</thead>
@@ -30,14 +30,14 @@ include 'header.php';
 					<?php
 					$searchName = "";
 					$searchSQL = "";
-					if(isset($_GET['timkiemtensach'])) {
-						$searchName = $_GET['timkiemtensach'];
+					if(isset($_GET['timkiemtensp'])) {
+						$searchName = $_GET['timkiemtensp'];
 					}
 					if(empty($searchName)) {
 					
-						$searchSQL = "SELECT * FROM sach";
+						$searchSQL = "SELECT * FROM giohang";
 					} else {
-						$searchSQL = "SELECT * FROM sach WHERE ten LIKE '%$searchName%'";
+						$searchSQL = "SELECT * FROM giohang WHERE ten LIKE '%$searchName%'";
 					}
 					$stmt = $conn->prepare($searchSQL);
 					$stmt->execute();
@@ -48,17 +48,18 @@ include 'header.php';
 					?>
 					<tr >
 						
-						<td ><?php echo $value['ten']?></td>
-						<td ><?php echo $value['tacgia']?></td>
-						<td ><?php echo $value['ngayxuatban']?></td>
+						<td ><?php echo $value['tensp']?></td>
+						<td ><?php echo $value['soluong']?></td>
 						<td ><?php echo $value['giatien']?></td>
+						<td ><?php echo $value['tongtien']?></td>
 						<td >
-							<img src="<?php echo '../uploads/'.$value['anh']?>" alt="ảnh" style="width: 100px ;height=auto;">
+							<img src="<?php echo '.'.$value['anh']?>" alt="ảnh" style="width: 100px ;height=auto;">
 							
 						</td>
+						<td><?php echo $value['hoadon_id']?></td>
 						<td >						
-							<span><a href="sua.php<?php echo '?id='.$value['sach_id'];?>"><i class="fas fa-edit"></i></a></span>
-							<span><a href="xoa.php<?php echo '?id='.$value['sach_id'];?>"><i class="fas fa-trash-alt"></i></a></span>
+							<!-- <span><a href="sua.php<?php echo '?id='.$value['sach_id'];?>"><i class="fas fa-edit"></i></a></span> -->
+							<span><a href="xoa.php<?php echo '?id='.$value['id'];?>"><i class="fas fa-trash-alt"></i></a></span>
 						</td>
 					</tr>
 					<?php }?>

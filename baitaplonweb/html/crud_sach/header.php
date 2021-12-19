@@ -27,14 +27,14 @@ if(isset($_SESSION['taikhoan'])) {
 	<header>
 
 		<!-- tiêu đề của trang -->
-		<div>Danh sách sản phẩm</div>
+		<div style="width: 100%; text-align: center; font-style: italic;">Danh sách sản phẩm</div>
 
 		<!-- Thanh tìm kiếm -->
 		<nav class="nav__menu">
 
 			<ul class="nav__menu__list">
 
-				<li><a href="them.php" target="_self">Thêm sản phẩm</a></li>
+				<li><a href="them.php" target="_self" > <button class="nav__menu__list-btn">Thêm sản phẩm</button></a></li>
 
 				<li>
 

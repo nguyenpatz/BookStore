@@ -7,7 +7,7 @@
 .sidebar {
 	display: none;
 	flex-direction: column;
-	background:  grey;
+	background-image: linear-gradient(#23074d, #cc5333);
 	width: 200px;
 	height: 100vh;
 }
@@ -16,12 +16,21 @@
 	margin:  10px 0 10px 0;
 	padding: 10px;
 	font-size: 1rem;
-	color: #000;
+	color: #fff;
 	transition:  .4s ease;
 }
-
+.sidebar__open{
+	background: transparent;
+	outline: none;
+	border: none;
+	width: 100%;
+	text-align: right;
+}
+.sidebar__open p{
+	float: right;
+}
 .sidebar a:hover {
-	background:  #fff;
+	margin-left: 20px;
 }
 
 
@@ -31,9 +40,16 @@
 }
 
 .activeSideBar__btn{
-	font-size: 2rem;
+	height: 100%;
+	background: #000;
+	outline: none;
+	border: none;
 }
-
+.activeSideBar__btn i{
+	font-size: 2rem;
+	color: #fff;
+	margin: 10px 10px;
+}
 .footer {
 	position: fixed;
 	bottom: 0;

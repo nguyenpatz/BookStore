@@ -185,6 +185,29 @@ a{
     font-size: 1.3rem;
     border-right: .1rem solid #000;
 }
+.account__extend{
+    position: fixed;
+    right: 0;
+    top: 0;
+    height: 200px;
+    width: 200px;
+    background-color: #ccc;
+    margin-top: 50px;
+    text-align: left;
+    padding: 10px 10px;
+    font-size: 14px;
+    border-radius: 10px;
+    display: none;
+    animation: example .4s;
+}
+@keyframes example {
+  from {height: 0;}
+  to {height: 200px;}
+}
+.account__extend li{
+    padding-bottom: 20px;
+    list-style-type: circle;
+}
 .others__item:last-child{
    border-right: none;
 }
@@ -200,6 +223,15 @@ a{
     border-bottom: .1rem solid black;
     background: transparent;
     outline: transparent;
+}
+.others__account{
+    position: relative;
+}
+.others__account_extend{
+    position: absolute;
+    background-color: #000;
+    top: 100%;
+    display: none;
 }
 /*slide*/
 .aspect-ratio-169 {
@@ -371,6 +403,18 @@ a{
     background-color: var(--whitecl);
     display: none;
     z-index: 1;
+    animation: open-fitler .5s;
+
+}
+@keyframes open-fitler{
+    from{
+        height: 0;
+        background-color: rgba(1, 1, 1, 0.4);
+    }
+    to{
+        height: 240px;
+        background-color: var(--whitecl);
+    }
 }
 .open{
     display: block;
@@ -380,6 +424,7 @@ a{
     padding: 10px 10px;
     align-items: center;
     outline: none;
+    transition-delay: .3s;
 }
 .category-grid__head-filter-extend-item label{
     padding-right: 10px;
@@ -459,6 +504,7 @@ a{
 }
 .category-menu__extends-item{
     padding: 5px 0 0;
+    padding-bottom: 20px;
     font-size: 13px;
     display: flex;
     align-items: flex-start;
@@ -471,10 +517,13 @@ a{
     display: flex;
     align-items: flex-start;
 }
-.category-menu__extends-item a:hover{
-    color: var(--pricl2);
+.category-menu__extends-item:hover{
     transform: scale(1.1);
     margin-left: 2rem;
+    transition: .5s;
+}
+.category-menu__extends-item a:hover{
+    color: var(--pricl2);
 }
 .category{
     background-color: var(--whitecl);
@@ -1135,7 +1184,8 @@ a{
     text-align: center;
     align-items: center;
 }
-.cart__content-right-button button {
+.cart__content-right-button button,
+.cart__content-right-button input {
     padding: 0 1.8rem;
     height: 3.5rem;
     cursor: pointer;
@@ -1149,13 +1199,15 @@ a{
 .cart__content-right-button button:first-child:hover {
     background-color: var(--pricl2);
 }
-.cart__content-right-button button:last-child {
+.cart__content-right-button button:last-child,
+.cart__content-right-button input {
     background-color: var(--pricl);
     color: #fff;
     border: none;
     border: .1rem solid black;
 }
-.cart__content-right-button button:last-child:hover {
+.cart__content-right-button button:last-child:hover,
+.cart__content-right-button input:hover {
     background-color: var(--pricl2);
     color: black;
 }
@@ -1448,7 +1500,8 @@ a{
     align-items: center;
     text-align: center;
 }
-.payment-content__right-payment button {
+.payment-content__right-payment button,
+.payment-content__right-payment input {
     height: 3.5rem;
     padding: 0 2.0rem;
     font-size: 1.2rem;
@@ -1459,7 +1512,8 @@ a{
     border-radius: .5rem;
     background-color: var(--pricl);
 }
-.payment-content__right-payment button:hover {
+.payment-content__right-payment button:hover,
+.payment-content__right-payment input:hover {
     background-color: var(--pricl2);
     color: #fff;
 }                      
